@@ -13,12 +13,11 @@ export default function App() {
 
   const onConnectEmail = () => {
     const message = connectEmail();
-    console.log(message)
     webviewRef.current?.injectJavaScript(message)
   }
 
   const handleMessage = (event: any) => {
-    console.log(event.nativeEvent.data)
+    console.log('SECURE RESPONSE: ', event.nativeEvent.data)
   }
 
   return (
