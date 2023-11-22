@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
-import { FrameSdk, connectEmail, isConnected } from './FrameSdk';
+import { BaseHtml, FrameSdk, connectEmail, isConnected } from './FrameSdk';
 
 export default function App() {
   const webviewRef = useRef<WebView>(null);
@@ -12,7 +12,7 @@ export default function App() {
   }
 
   const onConnectEmail = () => {
-    const message = connectEmail();
+    const message = connectEmail("a@a.com");
     webviewRef.current?.injectJavaScript(message)
   }
 
@@ -35,7 +35,7 @@ export default function App() {
         containerStyle={styles.webview}
         originWhitelist={['*']}
         onMessage={handleMessage}
-        source={{ html: '<div></div>' }}
+        source={{ html: BaseHtml }}
         injectedJavaScript={FrameSdk}
       />
     </>
