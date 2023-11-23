@@ -48,6 +48,15 @@ export const FrameSdk = `
     const { action } = await provider.connectEmail({ email })
     window.ReactNativeWebView.postMessage(JSON.stringify({ action }))
   }
+
+  const verifyOtp = async (otp) => {
+    await provider.connectOtp({ otp })
+  }
+
+  const connect = async () => {
+    const response = await provider.connect()
+    window.ReactNativeWebView.postMessage(JSON.stringify(response))
+  }
 `
 
 export const isConnected = () => {
@@ -62,6 +71,22 @@ export const connectEmail = (email:string) => {
   return `
     setTimeout(() => {
       connectEmail("${email}");
+    }, 100)
+  `
+}
+
+export const verifyOtp = (otp:string) => {
+  return `
+    setTimeout(() => {
+      verifyOtp("${otp}");
+    }, 100)
+  `
+}
+
+export const connect = () => {
+  return `
+    setTimeout(() => {
+      connect();
     }, 100)
   `
 }
